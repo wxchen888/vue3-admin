@@ -18,6 +18,7 @@ export default defineConfig({
     Components({
       //按需导入组件
       resolvers: [ElementPlusResolver()],
+      dirs: ["src/components", "src/views"],
       dts: true,
       include: [/\.vue$/, /\.vue\?vue/, /\.md$/],
     }),

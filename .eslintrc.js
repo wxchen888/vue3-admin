@@ -13,7 +13,14 @@ module.exports = {
   },
   extends: ["plugin:vue/vue3-recommended", "./.eslintrc-auto-import.json"],
   rules: {
-    "no-explicit-any": "off",
-    "ban-types": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/ban-types": "off",
+    "vue/multi-word-component-names": "off",
+    "vue/singleline-html-element-content-newline": "off",
+    "vue/html-closing-bracket-newline": "off",
+    "vue/multiline-html-element-content-newline": "off",
+    "vue/html-indent": "off",
+    "vue/html-self-closing": "off",
+    "vue/max-attributes-per-line": "off",
   },
 };
