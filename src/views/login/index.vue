@@ -17,11 +17,7 @@
           </el-col>
           <el-col :span="24">
             <el-form-item label="输入密码" prop="pass">
-              <el-input
-                v-model="ruleForm.pass"
-                type="password"
-                autocomplete="off"
-              />
+              <el-input v-model="ruleForm.pass" type="password" autocomplete="off" />
             </el-form-item>
           </el-col>
           <el-col :span="24">
@@ -34,36 +30,44 @@
 </template>
 
 <script lang="ts" setup>
-import { login } from "@/api/login";
-import { ElMessage } from "element-plus";
-import { getValidator } from "@/hooks/login";
-import { setLocalStorage } from "@/utils/Cache";
-import { useRouter } from "vue-router";
+import { login } from '@/api/login'
+import { ElMessage } from 'element-plus'
+import { getValidator } from '@/hooks/login'
+import { setLocalStorage } from '@/utils/Cache'
+import { useRouter } from 'vue-router'
+import { getInitMenus } from '@/api/auth'
+import { useStore } from '@/store/index'
 
-const { ruleFormRef, ruleForm, validatePass, checkName } = getValidator();
-const router = useRouter();
+const { ruleFormRef, ruleForm, validatePass, checkName } = getValidator()
+const router = useRouter()
+const store = useStore()
 const rules = reactive({
-  pass: [{ validator: validatePass, trigger: "blur" }],
-  name: [{ validator: checkName, trigger: "blur" }],
-});
+  pass: [{ validator: validatePass, trigger: 'blur' }],
+  name: [{ validator: checkName, trigger: 'blur' }]
+})
 
 const submitForm = async () => {
   if (!ruleForm.name || !ruleForm.pass) {
-    ElMessage.warning("请输入用户名和密码");
-    return false;
+    ElMessage.warning('请输入用户名和密码')
+    return false
   }
-  const res = await login({ username: ruleForm.name, password: ruleForm.pass });
-  console.log(res);
+  const res = await login({ username: ruleForm.name, password: ruleForm.pass })
+  console.log(res)
 
   if (res.data.code !== 20000) {
-    ElMessage.error("登录错误");
-    return;
+    ElMessage.error('登录错误')
+    return
   } else {
-    ElMessage.success("用户登录成功!");
-    setLocalStorage("USER_TOKEN", res.data.data.token);
-    router.push({ name: "MainIndex", params: res.data.data.userInfo });
+    // ElMessage.success('用户登录成功!')
+    // setLocalStorage('USER_TOKEN', res.data.data.token)
+    // //在此处发送权限请求生成路由
+    // getInitMenus().then((res: any) => {
+    //   console.log('路由菜单', res)
+    // })
+    // router.push({ name: 'MainIndex', params: res.data.data.userInfo })
+    store.dispatch('login/accountLoginAction', { name: ruleForm.name, password: ruleForm.pass })
   }
-};
+}
 </script>
 <style scoped lang="scss">
 .login {

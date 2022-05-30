@@ -4,13 +4,18 @@
 
 declare module 'vue' {
   export interface GlobalComponents {
-    Auth: typeof import('./src/views/auth/index.vue')['default']
+    Address: typeof import('./src/views/order/address/index.vue')['default']
+    Advertisement: typeof import('./src/views/market/advertisement/index.vue')['default']
+    AreaChart: typeof import('./src/views/dashboard/areaChart/index.vue')['default']
+    Article: typeof import('./src/views/content/article/index.vue')['default']
+    Brand: typeof import('./src/views/product/brand/index.vue')['default']
+    Category: typeof import('./src/views/product/category/index.vue')['default']
     Dashboard: typeof import('./src/views/dashboard/index.vue')['default']
+    Detail: typeof import('./src/views/order/detail/index.vue')['default']
     ElAside: typeof import('element-plus/es')['ElAside']
     ElBreadcrumb: typeof import('element-plus/es')['ElBreadcrumb']
     ElBreadcrumbItem: typeof import('element-plus/es')['ElBreadcrumbItem']
     ElButton: typeof import('element-plus/es')['ElButton']
-    ElCard: typeof import('element-plus/es')['ElCard']
     ElCol: typeof import('element-plus/es')['ElCol']
     ElContainer: typeof import('element-plus/es')['ElContainer']
     ElDropdown: typeof import('element-plus/es')['ElDropdown']
@@ -28,9 +33,19 @@ declare module 'vue' {
     ElSubMenu: typeof import('element-plus/es')['ElSubMenu']
     Login: typeof import('./src/views/login/index.vue')['default']
     MainIndex: typeof import('./src/views/mainIndex/index.vue')['default']
+    Map: typeof import('./src/views/dashboard/map/index.vue')['default']
+    Market: typeof import('./src/views/market/index.vue')['default']
+    Material: typeof import('./src/views/content/material/index.vue')['default']
+    NameStatic: typeof import('./src/views/dashboard/nameStatic/index.vue')['default']
+    NotFound: typeof import('./src/views/notFound/index.vue')['default']
+    Order: typeof import('./src/views/order/index.vue')['default']
+    OrderBack: typeof import('./src/views/order/orderBack/index.vue')['default']
     Permission: typeof import('./src/views/auth/permission/permission.vue')['default']
+    Person: typeof import('./src/views/person/index.vue')['default']
+    Product: typeof import('./src/views/product/index.vue')['default']
     Role: typeof import('./src/views/auth/role/role.vue')['default']
-    User: typeof import('./src/views/auth/user/user.vue')['default']
+    Setting: typeof import('./src/views/person/Setting/index.vue')['default']
+    User: typeof import('./src/views/user/index.vue')['default']
   }
 }
 

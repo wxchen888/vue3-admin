@@ -5,6 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import layout from "@/layout/index.vue";
+import layout from '@/layout/indexCopy.vue'
 </script>
 <style scoped lang="scss"></style>

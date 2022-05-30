@@ -1,6 +1,5 @@
 <template>
-  <h2>权限管理主页</h2>
-  <router-view />
+  <h2>限时活动</h2>
 </template>
 
 <script lang="ts" setup></script>

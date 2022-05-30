@@ -1,4 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import * as echarts from 'echarts'
+provide('echarts', echarts)
+</script>
 
 <template>
   <div id="app">
@@ -7,7 +10,7 @@
 </template>
 
 <style>
-@import "@/common/index.scss";
+@import '@/common/index.scss';
 body {
   /* display: flex;
   flex-direction: column;
@@ -22,7 +25,7 @@ body {
 
 #app {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   background-color: #e2e2e2;
 }
 </style>

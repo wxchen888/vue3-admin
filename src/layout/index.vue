@@ -3,14 +3,7 @@
     <el-container>
       <el-aside :width="asideWidth">
         <el-scrollbar>
-          <el-menu
-            :default-openeds="['0']"
-            :collapse="collapse"
-            :default-active="defaultTabIndex"
-          >
-            <div class="controller" @click="changeCollapse">
-              <el-icon><Grid /></el-icon>
-            </div>
+          <el-menu :default-openeds="['0']" :collapse="collapse" :default-active="defaultTabIndex">
             <el-menu-item index="0" @click="clickHomeSide"
               ><el-icon><HomeFilled /></el-icon>主页</el-menu-item
             >
@@ -73,21 +66,16 @@
         </el-scrollbar>
       </el-aside>
       <el-container>
-        <el-header
-          style="
-            display: flex;
-            justify-content: space-between;
-            background-color: #fff;
-          "
-        >
+        <el-header style="display: flex; background-color: #fff">
+          <div class="controller" @click="changeCollapse">
+            <el-icon><Grid /></el-icon>
+          </div>
           <div class="breadcrumb">
             <el-breadcrumb separator="/">
               <el-breadcrumb-item :to="{ path: '/mainIndex' }">{{
                 breadcrumbData.firstTitle
               }}</el-breadcrumb-item>
-              <el-breadcrumb-item>{{
-                breadcrumbData.secondTitle
-              }}</el-breadcrumb-item>
+              <el-breadcrumb-item>{{ breadcrumbData.secondTitle }}</el-breadcrumb-item>
             </el-breadcrumb>
           </div>
           <div class="toolbar">
@@ -113,88 +101,89 @@
 </template>
 
 <script lang="ts" setup>
-import useSvgs from "@/hooks/layout";
-import { useRouter } from "vue-router";
-import { setLocalStorage } from "@/utils/Cache";
+import useSvgs from '@/hooks/layout'
+import { useRouter } from 'vue-router'
+import { setLocalStorage } from '@/utils/Cache'
 
-const router = useRouter();
-const { authData, shopData, orderData } = useSvgs();
-const collapse = ref(false);
-const defaultTabIndex = ref("0");
-const asideWidth = ref("200px");
+const router = useRouter()
+const { authData, shopData, orderData } = useSvgs()
+const collapse = ref(false)
+const defaultTabIndex = ref('0')
+const asideWidth = ref('200px')
 const breadcrumbData = reactive({
-  firstTitle: "主页",
-  secondTitle: "",
-});
+  firstTitle: '主页',
+  secondTitle: ''
+})
 
 onMounted(() => {
   nextTick(() => {
-    const localTabIndex = localStorage.getItem("tab-index");
-    if (localTabIndex) defaultTabIndex.value = JSON.parse(localTabIndex);
-  });
-});
+    const localTabIndex = localStorage.getItem('tab-index')
+    if (localTabIndex) defaultTabIndex.value = JSON.parse(localTabIndex)
+  })
+})
 
 const changeCollapse = () => {
-  collapse.value = !collapse.value;
-  collapse.value ? (asideWidth.value = "60px") : (asideWidth.value = "200px");
-};
+  collapse.value = !collapse.value
+  collapse.value ? (asideWidth.value = '50px') : (asideWidth.value = '200px')
+}
 const clickHomeSide = () => {
-  breadcrumbData.firstTitle = "主页";
-  breadcrumbData.secondTitle = "";
-  router.push({ name: "Dashboard" });
-  defaultTabIndex.value = "0";
-  setLocalStorage("tab-index", defaultTabIndex.value);
-};
+  breadcrumbData.firstTitle = '主页'
+  breadcrumbData.secondTitle = ''
+  router.push({ name: 'Dashboard' })
+  defaultTabIndex.value = '0'
+  setLocalStorage('tab-index', defaultTabIndex.value)
+}
 const clickAuthSide = (index: number) => {
-  breadcrumbData.firstTitle = "权限管理";
-  breadcrumbData.secondTitle = authData[index].itemName;
+  breadcrumbData.firstTitle = '权限管理'
+  breadcrumbData.secondTitle = authData[index].itemName
   switch (index) {
     case 0:
-      router.push({ name: "User" });
-      defaultTabIndex.value = "1-0";
-      setLocalStorage("tab-index", defaultTabIndex.value);
-      break;
+      router.push({ name: 'User' })
+      defaultTabIndex.value = '1-0'
+      setLocalStorage('tab-index', defaultTabIndex.value)
+      break
     case 1:
-      router.push({ name: "Role" });
-      defaultTabIndex.value = "1-1";
-      setLocalStorage("tab-index", defaultTabIndex.value);
-      break;
+      router.push({ name: 'Role' })
+      defaultTabIndex.value = '1-1'
+      setLocalStorage('tab-index', defaultTabIndex.value)
+      break
     case 2:
-      router.push({ name: "Permission" });
-      defaultTabIndex.value = "1-2";
-      setLocalStorage("tab-index", defaultTabIndex.value);
-      break;
+      router.push({ name: 'Permission' })
+      defaultTabIndex.value = '1-2'
+      setLocalStorage('tab-index', defaultTabIndex.value)
+      break
     default:
-      break;
+      break
   }
-};
+}
 const clickShopSide = (index: number) => {
-  breadcrumbData.firstTitle = "商品管理";
-  breadcrumbData.secondTitle = shopData[index].itemName;
-  console.log(index);
-};
+  breadcrumbData.firstTitle = '商品管理'
+  breadcrumbData.secondTitle = shopData[index].itemName
+  console.log(index)
+}
 const clickOrderSide = (index: number) => {
-  breadcrumbData.firstTitle = "订单管理";
-  breadcrumbData.secondTitle = orderData[index].itemName;
-  console.log(index);
-};
+  breadcrumbData.firstTitle = '订单管理'
+  breadcrumbData.secondTitle = orderData[index].itemName
+  console.log(index)
+}
 
 watch(
   () => collapse.value,
   (val) => {
-    console.log(val);
-    val ? (asideWidth.value = "60px") : (asideWidth.value = "200px");
+    console.log(val)
+    val ? (asideWidth.value = '50px') : (asideWidth.value = '200px')
   },
   {
-    immediate: true,
+    immediate: true
   }
-);
+)
 </script>
 <style scoped lang="scss">
 .common-layout {
   :deep(.el-aside) {
     min-height: 100vh;
-    overflow: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
     background-color: #eee;
     .el-menu-item {
       background-color: #eee;
@@ -212,24 +201,22 @@ watch(
     }
   }
   .controller {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+    width: 60px;
     line-height: 30px;
     font-size: 20px;
-    font-weight: 600;
-    padding: 20px 10px;
+    padding: 15px 10px;
     background-color: #fff;
     cursor: pointer;
   }
   .breadcrumb {
+    width: fit-content;
     font-size: 14px;
     margin-top: 20px;
   }
   .toolbar {
     font-size: 14px;
     margin-top: 10px;
+    margin-left: auto;
     .welcome {
       display: inline-block;
       line-height: 30px;
@@ -241,7 +228,7 @@ watch(
         width: 30px;
         height: 30px;
         border-radius: 6px;
-        background-image: url("../assets/xiaoxin.webp");
+        background-image: url('../assets/xiaoxin.webp');
         background-size: 100% 100%;
         margin-left: 10px;
       }

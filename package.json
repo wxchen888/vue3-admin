@@ -5,13 +5,16 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "@element-plus/icons-vue": "^2.0.0-beta.0",
+    "echarts": "^5.3.2",
     "element-plus": "^2.2.2",
     "normalize.css": "^8.0.1",
+    "postcss-px-to-viewport": "^1.1.1",
     "unplugin-icons": "^0.14.3",
     "vite-plugin-inspect": "^0.5.0",
     "vue": "^3.2.25",
@@ -23,18 +26,20 @@
     "@typescript-eslint/parser": "^5.9.0",
     "@vitejs/plugin-legacy": "^1.8.2",
     "@vitejs/plugin-vue": "^2.3.3",
+    "autoprefixer": "^10.4.7",
     "axios": "^0.27.2",
     "eslint": "^8.6.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-vue": "^8.2.0",
-    "postcss-px-to-viewport": "^1.1.1",
+    "husky": "^8.0.1",
     "prettier": "^2.5.1",
     "sass": "^1.47.0",
     "typescript": "^4.5.4",
     "unplugin-auto-import": "^0.5.10",
     "unplugin-vue-components": "^0.17.11",
     "vite": "^2.9.9",
-    "vue-tsc": "^0.34.7"
+    "vue-tsc": "^0.34.7",
+    "vuex": "^4.0.2"
   }
 }
