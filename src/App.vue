@@ -9,8 +9,8 @@ provide('echarts', echarts)
   </div>
 </template>
 
-<style>
-@import '@/common/index.scss';
+<style lang="scss">
+@import './common/index.scss';
 body {
   /* display: flex;
   flex-direction: column;
@@ -21,6 +21,10 @@ body {
   /* margin + overflow 用于隐藏 */
   /* margin: 0;
   overflow: hidden; */
+  ol,
+  ul {
+    list-style: none;
+  }
 }
 
 #app {
